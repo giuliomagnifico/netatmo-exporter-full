@@ -1,3 +1,45 @@
+> ⚠️ **Warning**  
+ 
+This forked version of the Netatmo exporter for Prometheus also works with [Thermostat](https://www.netatmo.com/en-eu/smart-thermostat). You need to compile it, I haven't made a Docker build. It exposes three metrics:
+
+```
+netatmo_thermostat_boiler_status
+netatmo_thermostat_setpoint
+netatmo_thermostat_temperature
+```
+Full overview:
+
+```
+# HELP netatmo_thermostat_boiler_status Netatmo Energy boiler status (1=on, 0=off). Per-room when possibile, otherwise per-home.
+# TYPE netatmo_thermostat_boiler_status gauge
+netatmo_thermostat_boiler_status{home_id="60796ad062axx",home_name="Casa",room_id="",room_name=""} 0
+# HELP netatmo_thermostat_setpoint Netatmo Energy target setpoint temperature in degrees Celsius.
+# TYPE netatmo_thermostat_setpoint gauge
+netatmo_thermostat_setpoint{home_id="60796ad062xxx",home_name="Casa",room_id="3096xx",room_name=""} 0
+# HELP netatmo_thermostat_temperature Netatmo Energy measured room temperature in degrees Celsius.
+# TYPE netatmo_thermostat_temperature gauge
+netatmo_thermostat_temperature{home_id="60796ad062axxx",home_name="Casa",room_id="30964xxx",room_name=""} 17.9
+```
+
+You need to compile it by downloading this repo and build it using
+
+`go build -o netatmo-exporter`
+
+Then, as before (see below), the original instructions apply: generate the token on the Netatmo dev website and grant the token **read thermostat** access.
+
+Example in Grafana
+
+<img width="1796" height="1568" alt="510765545-ce94b4f1-3b09-426e-8713-eb90682ed892" src="https://github.com/user-attachments/assets/50103055-3fd8-4804-9980-a86d192dd222" />
+
+
+---
+
+**⬇️ Below the original instructions ⬇️**
+
+
+___
+
+
 # netatmo-exporter
 
 Simple [prometheus](https://prometheus.io) exporter for getting sensor values [NetAtmo](https://www.netatmo.com) sensors into prometheus.
