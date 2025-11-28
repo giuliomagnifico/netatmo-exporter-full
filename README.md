@@ -32,6 +32,21 @@ Example in Grafana
 <img width="1796" height="1568" alt="510765545-ce94b4f1-3b09-426e-8713-eb90682ed892" src="https://github.com/user-attachments/assets/50103055-3fd8-4804-9980-a86d192dd222" />
 
 
+## Docker
+
+It should works also using Docker, just download this repository:
+
+`git clone https://github.com/giuliomagnifico/netatmo-exporter-full.git && cd netatmo-exporter-full`
+
+Create the Docker image:
+
+`docker build -t giuliomagnifico/netatmo-exporter-full:latest . `
+
+And run it (follow also the original instruction below):
+
+`docker volume create netatmo-token && docker run -d --name netatmo-exporter-full -p 9210:9210 -v netatmo-token:/var/lib/netatmo-exporter -e NETATMO_CLIENT_ID="xxx" -e NETATMO_CLIENT_SECRET="xxx" -e NETATMO_EXPORTER_EXTERNAL_URL="http://xxx:9210" giuliomagnifico/netatmo-exporter-full:latest`
+
+
 ---
 
 **⬇️ Below the original instructions ⬇️**
